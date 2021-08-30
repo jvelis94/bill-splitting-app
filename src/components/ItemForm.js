@@ -16,7 +16,7 @@ const ItemForm = (props) => {
         <form className={styles.formContainer} onSubmit={handleFormSubmit}>
             <input type="text" name="name" placeholder="burger" className={styles.formInputs} ref={nameRef} />    
             <input type="text" name="price" placeholder="20" className={styles.formInputs} ref={priceRef} />
-            <input type="submit" style={{display: 'none'}}/>
+            <input type="submit" value="Add" className={styles.formSubmit}/>
         </form>
     )
 }
