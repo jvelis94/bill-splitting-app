@@ -9,11 +9,13 @@ const PersonalBill = (props) => {
 
     return (
         <div>
-            <h1>{person.name}</h1>
-            <ItemForm addItemToPerson={props.addItemToPerson} personId={person.id} />
-            <div>
+            <div className={styles.personalBillContainer}>
+                <h1>{person.name}</h1>
+                <ItemForm addItemToPerson={props.addItemToPerson} personId={person.id} />
+            </div>
+            <div className={styles.billDetailsContainer}>
                 <div className={styles.itemsHeaders}>
-                    <h4>Item</h4>
+                    <h4 style={{textIndent: "12px"}}>Item</h4>
                     <h4 className={styles.centerMoneyQuantity}>Qty</h4>
                     <h4 className={styles.centerMoneyQuantity}>Price</h4>
                 </div>

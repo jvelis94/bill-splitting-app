@@ -1,10 +1,12 @@
 .totals {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 10fr 2fr;
 }
 
 .ultimateTotal {
-    display: flex;
-    justify-content: space-between;
     font-weight: bolder;
+}
+
+.spanCenter {
+    text-align: center;
 }

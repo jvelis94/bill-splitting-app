@@ -19,3 +19,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.personalBillContainer {
+    padding: 24px;
+}
+
+/* .billDetailsContainer {
+    padding:
+} */

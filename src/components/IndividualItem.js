@@ -16,7 +16,7 @@ const IndividualItem = (props) => {
 
     return (
         <div className={styles.itemFlex}>
-            <h4>{item.name}</h4>
+            <h4 style={{textIndent: "12px"}}>{item.name}</h4>
             <h4 className={styles.centerMoneyQuantity}>
                 <div className={styles.centerActionItems}>
                     <RemoveIcon onClick={decrementQty} color={item.qty === 1 ? 'disabled' : 'inherit'} />

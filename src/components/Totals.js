@@ -8,19 +8,19 @@ const Totals = (props) => {
         <ul>
             <li className={styles.totals}>
                 <span>Subtotal</span>
-                <span>{person.subtotal}</span>
+                <span className={styles.spanCenter}>{person.subtotal}</span>
             </li>
             <li className={styles.totals}>
                 <span>Tax (8.875%)</span>
-                <span>{person.tax}</span>
+                <span className={styles.spanCenter}>{person.tax}</span>
             </li>
             <li className={styles.totals}>
                 <span>Tip</span>
-                <span>{person.tip}</span>
+                <span className={styles.spanCenter}>{person.tip}</span>
             </li>
-            <li className={styles.ultimateTotal}>
+            <li className={`${styles.totals} ${styles.ultimateTotal}`}>
                 <span>Total</span>
-                <span>{person.total}</span>
+                <span className={styles.spanCenter}>{person.total}</span>
             </li>
         </ul>
     )
