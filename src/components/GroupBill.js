@@ -28,6 +28,7 @@ const GroupBill = () => {
     }, [tipRate])
 
     const addItemToPerson = (name, price, personId) => {
+        console.log(`adding ${name} to person`)
         let currentPersonIndex = people.findIndex(person => person.id === personId)
         let currentPerson = people.filter(person => person.id === personId)
         currentPerson[0]['items'].push({

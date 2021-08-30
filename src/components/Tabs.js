@@ -66,7 +66,7 @@ export default function SimpleTabs(props) {
         </Tabs>
       </AppBar>
       {props.people.map(person => (
-            <TabPanel value={value} index={person.id-1}>
+            <TabPanel value={value} index={person.id-1} key={person.id-1}>
                 <PersonalBill 
                     key={person.id-1} 
                     person={person} 
