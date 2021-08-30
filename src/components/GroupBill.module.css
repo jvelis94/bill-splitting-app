@@ -1,0 +1,28 @@
+.groupBillContainer {
+    padding: 24px;
+}
+
+.formInputs {
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #c5c5c5
+}
+
+.formInputs::placeholder, .formInputs[type=text] {
+    padding-left: 4px;
+}
+
+.centerActionItems {
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2999D4;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+.newPersonContainer {
+    text-align: center;
+}

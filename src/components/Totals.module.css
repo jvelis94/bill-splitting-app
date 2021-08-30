@@ -1,0 +1,10 @@
+.totals {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ultimateTotal {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bolder;
+}

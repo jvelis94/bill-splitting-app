@@ -1,0 +1,19 @@
+.formContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+    column-gap: 4px;
+}
+
+.formInputs {
+    border-radius: 6px;
+    border: 1px solid #c5c5c5
+}
+
+.formInputs::placeholder, .formInputs[type=text] {
+    padding-left: 4px;
+}
+
+
+
+
