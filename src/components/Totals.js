@@ -1,7 +1,20 @@
 import styles from './Totals.module.css'
+import React, {useState} from 'react'
 
 const Totals = (props) => {
     const person = props.person
+
+    const [taxOption, setTaxOption] = useState("no tax")
+
+    const handleTaxActions = () => {
+        if (person.tax === 0) {
+            props.addTax()
+            setTaxOption("no tax")
+        } else {
+            props.eliminateTax()
+            setTaxOption("add tax")
+        }
+    }
 
 
     return (
@@ -11,7 +24,11 @@ const Totals = (props) => {
                 <span className={styles.spanCenter}>${person.subtotal}</span>
             </li>
             <li className={styles.totals}>
-                <span>Tax (8.875%)</span>
+                <div>
+                    <span>Tax ({100*person.tax/100}%)</span>
+                    <input type="button" value={taxOption} onClick={handleTaxActions} className={styles.taxButton}/>
+                </div>
+
                 <span className={styles.spanCenter}>${person.tax}</span>
             </li>
             <li className={styles.totals}>
