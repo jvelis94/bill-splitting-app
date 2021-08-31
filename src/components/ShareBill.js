@@ -14,7 +14,7 @@ const ShareBill = (props) => {
             .share({
               title: `${person.name} bill`,
               text: textBox,
-              url: "https://venmo.com/",
+              url: "venmo://",
             })
             .then(() => {
               console.log('Successfully shared');
