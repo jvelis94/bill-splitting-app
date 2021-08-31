@@ -4,6 +4,7 @@ import styles from "./GroupBill.module.css"
 import SimpleTabs from "./Tabs"
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
+import TextField from '@material-ui/core/TextField';
 
 const initialState = []
 
@@ -13,6 +14,7 @@ const GroupBill = () => {
     const [tipRate, setTipRate] = useState(.18)
     const [currentId, setCurrentId] = useState(1)
     const newPersonRef = useRef()
+    const [addPersonPlaceholder, setAddPersonPlaceholder] = useState("add new person")
 
     useEffect(() => {
         const updatedPeople = people.map(person => {
@@ -91,33 +93,41 @@ const GroupBill = () => {
         setPeople(prevState => [...prevState, newPerson])
         setCurrentId(prevState => prevState +=1)
         newPersonRef.current.value = ""
+        setAddPersonPlaceholder("add another person")
     }
-     
+
+    let tabsUi = (
+        <SimpleTabs 
+            people={people} 
+            addItemToPerson={addItemToPerson} 
+            incrementItemQuantity={incrementItemQuantity}
+            decrementItemQuantity={decrementItemQuantity}
+        />
+    )
+
+    let tipUi = (
+        <div className={styles.centerActionItems}>
+            <h4>Tip:</h4>
+            <RemoveIcon onClick={decrementTaxRate} />
+                {Math.round(tipRate*100)}%  
+            <AddIcon onClick={incrementTaxRate} />
+        </div>
+    )
 
     return (
         <>
             <div style={{textAlign: 'center'}}>
                 <img src='./split_logo.png' alt='logo' style={{width: '50%'}}/>
             </div>
-            <form onSubmit={handleNewPersonSubmit} className={styles.newPersonContainer}>
-                <input type="text" name="name" placeholder="add new person" className={styles.formInputs} ref={newPersonRef} />
-                <input type="submit" style={{display: 'none'}}/>
-            </form>
-
-            
-            <SimpleTabs 
-                people={people} 
-                addItemToPerson={addItemToPerson} 
-                incrementItemQuantity={incrementItemQuantity}
-                decrementItemQuantity={decrementItemQuantity}
-            />
-
-            <div className={styles.centerActionItems}>
-                <h4>Tip:</h4>
-                <RemoveIcon onClick={decrementTaxRate} />
-                    {Math.round(tipRate*100)}%  
-                <AddIcon onClick={incrementTaxRate} />
+            <div className={styles.newPersonContainer}>
+                <form onSubmit={handleNewPersonSubmit} >
+                    <input type="text" name="name" placeholder={addPersonPlaceholder} className={styles.formInputs} ref={newPersonRef} />
+                    <input type="submit" value="Add" className={styles.formSubmit}/>
+                </form>
             </div>
+
+            {people.length > 0 && tabsUi}
+            {people.length > 0 && tipUi}
         </>
     )
 }
