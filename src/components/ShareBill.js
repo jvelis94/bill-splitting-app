@@ -7,8 +7,8 @@ const ShareBill = (props) => {
           navigator
             .share({
               title: `${props.person.name} bill`,
-              text: `Hey ${props.person.name}, had fun the other day, your portion of the bill is ${props.person.total}`,
-              url: document.location.href,
+              text: `Hey ${props.person.name}, had fun the other day, your portion of the bill is $${props.person.total}`,
+              url: "https://venmo.com/",
             })
             .then(() => {
               console.log('Successfully shared');
