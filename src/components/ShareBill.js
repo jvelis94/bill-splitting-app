@@ -2,12 +2,18 @@ import React from 'react';
 import ShareIcon from '@material-ui/icons/Share';
 
 const ShareBill = (props) => {
+    const person = props.person
+
+    let itemsText = person['items'].map(item => `${item.name}($${item.price * item.qty})`).join(", ")
+    let textBox = `Hey ${person.name}, your breakdown for the bill is: ${itemsText}; total after tax and tip is $${props.person.total}`
+
     const handleOnClick = () => {
+        console.log(textBox)
         if (navigator.share) {
           navigator
             .share({
-              title: `${props.person.name} bill`,
-              text: `Hey ${props.person.name}, had fun the other day, your portion of the bill is $${props.person.total}`,
+              title: `${person.name} bill`,
+              text: textBox,
               url: "https://venmo.com/",
             })
             .then(() => {
