@@ -33,6 +33,7 @@ const GroupBill = () => {
         console.log(`adding ${name} to person`)
         let currentPersonIndex = people.findIndex(person => person.id === personId)
         let currentPerson = people.filter(person => person.id === personId)
+        console.log(currentPerson)
         currentPerson[0]['items'].push({
             name: name,
             price: parseFloat(parseInt(price)),
@@ -53,9 +54,23 @@ const GroupBill = () => {
         let currentPersonIndex = people.findIndex(person => person.id === personId)
         let currentPerson = people.filter(person => person.id === personId)
         let updateItem = currentPerson[0]['items'].findIndex(el => el.name === item)
-        currentPerson[0]['items'][updateItem]['qty'] -= 1
-        updateTotals(currentPerson[0], currentPersonIndex, currentPerson[0]['items'][updateItem]['price'], "minus")
-     }
+
+        if (currentPerson[0]['items'][updateItem]['qty'] > 1) {
+            currentPerson[0]['items'][updateItem]['qty'] -= 1
+            updateTotals(currentPerson[0], currentPersonIndex, currentPerson[0]['items'][updateItem]['price'], "minus")
+        }
+    }
+
+    const removeItemFromPerson = (item, personId) => {
+        console.log('removing item')
+        let currentPersonIndex = people.findIndex(person => person.id === personId)
+        let currentPerson = people.filter(person => person.id === personId)
+        let removeItem = currentPerson[0]['items'].findIndex(el => el.name === item)
+        const removeItemTotal = (currentPerson[0]['items'][removeItem]['price']) * (currentPerson[0]['items'][removeItem]['qty'])
+        currentPerson[0]['items'][removeItem]['qty'] = 0
+        currentPerson[0]['items'].splice(removeItem, 1);
+        updateTotals(currentPerson[0], currentPersonIndex, removeItemTotal, "minus")
+    }
 
 
     const incrementTaxRate = () => {
@@ -102,6 +117,7 @@ const GroupBill = () => {
             addItemToPerson={addItemToPerson} 
             incrementItemQuantity={incrementItemQuantity}
             decrementItemQuantity={decrementItemQuantity}
+            removeItemFromPerson={removeItemFromPerson}
         />
     )
 

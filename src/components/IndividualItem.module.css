@@ -1,6 +1,7 @@
 .itemFlex {
     display: grid;
-    grid-template-columns: 8fr 2fr 2fr;
+    grid-template-columns: 1fr 7fr 2fr 2fr;
+    align-items: center;
 }
 
 .centerMoneyQuantity {
@@ -9,7 +10,7 @@
 
 .itemsHeaders {
     display: grid;
-    grid-template-columns: 8fr 2fr 2fr;
+    grid-template-columns: 1fr 7fr 2fr 2fr;
     background-color: aliceblue;
     margin-top: 12px;
 }

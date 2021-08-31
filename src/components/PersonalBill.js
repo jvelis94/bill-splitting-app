@@ -15,7 +15,8 @@ const PersonalBill = (props) => {
             </div>
             <div className={styles.billDetailsContainer}>
                 <div className={styles.itemsHeaders}>
-                    <h4 style={{textIndent: "12px"}}>Item</h4>
+                    <h4> </h4>
+                    <h4 style={{textIndent: "4px"}}>Item</h4>
                     <h4 className={styles.centerMoneyQuantity}>Qty</h4>
                     <h4 className={styles.centerMoneyQuantity}>Price</h4>
                 </div>
@@ -25,6 +26,7 @@ const PersonalBill = (props) => {
                         item={item} 
                         incrementItemQuantity={props.incrementItemQuantity}
                         decrementItemQuantity={props.decrementItemQuantity}
+                        removeItemFromPerson={props.removeItemFromPerson}
                         personId={person.id}
                     />
                 ))}
