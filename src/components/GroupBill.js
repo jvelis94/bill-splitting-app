@@ -4,8 +4,7 @@ import styles from "./GroupBill.module.css"
 import SimpleTabs from "./Tabs"
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-import axios from 'axios';
-
+import TextField from '@material-ui/core/TextField';
 
 const initialState = []
 
@@ -15,7 +14,7 @@ const GroupBill = () => {
     const [tipRate, setTipRate] = useState(.18)
     const [currentId, setCurrentId] = useState(1)
     const newPersonRef = useRef()
-    // const [fileData, setFileData] = useState(null)
+    const [addPersonPlaceholder, setAddPersonPlaceholder] = useState("add new person")
 
     useEffect(() => {
         const updatedPeople = people.map(person => {
@@ -94,16 +93,8 @@ const GroupBill = () => {
         setPeople(prevState => [...prevState, newPerson])
         setCurrentId(prevState => prevState +=1)
         newPersonRef.current.value = ""
+        setAddPersonPlaceholder("add another person")
     }
-
-    let tipUi = (
-        <div className={styles.centerActionItems}>
-            <h4>Tip:</h4>
-            <RemoveIcon onClick={decrementTaxRate} />
-                {Math.round(tipRate*100)}%  
-            <AddIcon onClick={incrementTaxRate} />
-        </div>
-    )
 
     let tabsUi = (
         <SimpleTabs 
@@ -114,54 +105,29 @@ const GroupBill = () => {
         />
     )
 
-    
-
-    // const handleFileChange = event => {
-    //     // setFile(event.target.files[0])
-    //     handleFileUpload(event.target.files[0])
-    // }
-
-    // const handleFileUpload = (file) => {
-    //     const formData = new FormData();
-    
-    //     formData.append("file", file);
-
-    //     const headers = {
-    //         'accept': "application/json",
-    //         'Content-Type': 'multipart/form-data',
-    //         'apikey': '434c1dd009c211ec99d225a622880b2b'
-    //     }
-    //     axios.post("https://api.taggun.io/api/receipt/v1/verbose/file", formData, {
-    //         headers: headers
-    //     })
-    //     .then(function (response) {
-    //         console.log(response.data)
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error)
-    //     })
-    // } 
+    let tipUi = (
+        <div className={styles.centerActionItems}>
+            <h4>Tip:</h4>
+            <RemoveIcon onClick={decrementTaxRate} />
+                {Math.round(tipRate*100)}%  
+            <AddIcon onClick={incrementTaxRate} />
+        </div>
+    )
 
     return (
         <>
             <div style={{textAlign: 'center'}}>
                 <img src='./split_logo.png' alt='logo' style={{width: '50%'}}/>
             </div>
-            
             <div className={styles.newPersonContainer}>
-                {/* <input type="file" onChange={handleFileChange} /><br/><br/> */}
                 <form onSubmit={handleNewPersonSubmit} >
-                    <input type="text" name="name" placeholder="add new person" className={styles.formInputs} ref={newPersonRef} />
-                    <input type="submit" style={{display: 'none'}}/>
+                    <input type="text" name="name" placeholder={addPersonPlaceholder} className={styles.formInputs} ref={newPersonRef} />
+                    <input type="submit" value="Add" className={styles.formSubmit}/>
                 </form>
             </div>
-            {/* {fileData} */}
-
 
             {people.length > 0 && tabsUi}
             {people.length > 0 && tipUi}
-
-            
         </>
     )
 }
