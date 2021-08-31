@@ -43,3 +43,8 @@
     -moz-appearance: none;
     appearance: none;
 }
+
+.inputError {
+    border: 1px solid red;
+    box-shadow: 0 0 2px red; 
+}

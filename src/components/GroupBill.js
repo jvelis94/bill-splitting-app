@@ -14,6 +14,7 @@ const GroupBill = () => {
     const [tipRate, setTipRate] = useState(.18)
     const [currentId, setCurrentId] = useState(1)
     const newPersonRef = useRef()
+    const [newPersonError, setNewPersonError] = useState(false)
     const [addPersonPlaceholder, setAddPersonPlaceholder] = useState("add new person")
 
     useEffect(() => {
@@ -96,6 +97,10 @@ const GroupBill = () => {
 
     const handleNewPersonSubmit = (event) => {
         event.preventDefault()
+        if (newPersonRef.current.value === "") {
+            setNewPersonError(true)
+            return
+        }
         let newPerson = {
             id: currentId,
             name: newPersonRef.current.value,
@@ -108,6 +113,7 @@ const GroupBill = () => {
         setPeople(prevState => [...prevState, newPerson])
         setCurrentId(prevState => prevState +=1)
         newPersonRef.current.value = ""
+        setNewPersonError(false)
         setAddPersonPlaceholder("add another person")
     }
 
@@ -161,7 +167,13 @@ const GroupBill = () => {
             </div>
             <div className={styles.newPersonContainer}>
                 <form onSubmit={handleNewPersonSubmit} >
-                    <input type="text" name="name" placeholder={addPersonPlaceholder} className={styles.formInputs} ref={newPersonRef} />
+                    <input 
+                        type="text" 
+                        name="name" 
+                        placeholder={addPersonPlaceholder} 
+                        className={`${styles.formInputs} ${newPersonError ? styles.inputError : ""}`} 
+                        ref={newPersonRef} 
+                    />
                     <input type="submit" value="Add" className={styles.formSubmit}/>
                 </form>
             </div>
