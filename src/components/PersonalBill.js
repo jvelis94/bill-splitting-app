@@ -31,7 +31,7 @@ const PersonalBill = (props) => {
                     />
                 ))}
             </div>
-            <Totals person={person} />
+            <Totals person={person} eliminateTax={props.eliminateTax} addTax={props.addTax} />
         </div>
     )
 

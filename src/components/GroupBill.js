@@ -111,6 +111,28 @@ const GroupBill = () => {
         setAddPersonPlaceholder("add another person")
     }
 
+    const eliminateTax = () => {
+        // console.log('eliminating tax')
+        setTaxRate(0)
+        let newPeople = people.map(person => {
+            person['tax'] = 0
+            person['total'] = Math.round(100*(person['subtotal'] + person['tax'] + person['tip']))/100
+            return person
+        })
+        setPeople([...newPeople])
+    }
+
+    const addTax = () => {
+        // console.log('eliminating tax')
+        setTaxRate(0.08875)
+        let newPeople = people.map(person => {
+            person['tax'] = person['subtotal'] * 0.08875
+            person['total'] = Math.round(100*(person['subtotal'] + person['tax'] + person['tip']))/100
+            return person
+        })
+        setPeople([...newPeople])
+    }
+
     let tabsUi = (
         <SimpleTabs 
             people={people} 
@@ -118,6 +140,8 @@ const GroupBill = () => {
             incrementItemQuantity={incrementItemQuantity}
             decrementItemQuantity={decrementItemQuantity}
             removeItemFromPerson={removeItemFromPerson}
+            eliminateTax={eliminateTax}
+            addTax={addTax}
         />
     )
 

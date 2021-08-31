@@ -74,6 +74,8 @@ export default function SimpleTabs(props) {
                     incrementItemQuantity={props.incrementItemQuantity}
                     decrementItemQuantity={props.decrementItemQuantity}
                     removeItemFromPerson={props.removeItemFromPerson}
+                    eliminateTax={props.eliminateTax}
+                    addTax={props.addTax}
                 />
             </TabPanel>
         ))}
