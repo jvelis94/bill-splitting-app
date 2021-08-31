@@ -73,11 +73,11 @@ const GroupBill = () => {
     }
 
 
-    const incrementTaxRate = () => {
+    const incrementTipRate = () => {
         setTipRate(prevState => prevState += 0.01)
     }
 
-    const decrementTaxRate = () => {
+    const decrementTipRate = () => {
         setTipRate(prevState => prevState -= 0.01)
     }
 
@@ -124,9 +124,9 @@ const GroupBill = () => {
     let tipUi = (
         <div className={styles.centerActionItems}>
             <h4>Tip:</h4>
-            <RemoveIcon onClick={decrementTaxRate} />
+            <RemoveIcon onClick={decrementTipRate} />
                 {Math.round(tipRate*100)}%  
-            <AddIcon onClick={incrementTaxRate} />
+            <AddIcon onClick={incrementTipRate} />
         </div>
     )
 
