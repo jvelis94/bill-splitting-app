@@ -25,11 +25,11 @@ const Totals = (props) => {
             </li>
             <li className={styles.totals}>
                 <div>
-                    <span>Tax ({100*person.tax/100}%)</span>
+                    <span>Tax ({person['tax'] === 0 ? 0 : 8.875/100}%)</span>
                     <input type="button" value={taxOption} onClick={handleTaxActions} className={styles.taxButton}/>
                 </div>
 
-                <span className={styles.spanCenter}>${person.tax}</span>
+                <span className={styles.spanCenter}>${Math.round(100*person['tax'])/100}</span>
             </li>
             <li className={styles.totals}>
                 <span>Tip</span>
