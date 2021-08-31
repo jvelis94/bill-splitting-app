@@ -2,6 +2,8 @@ import IndividualItem from "./IndividualItem"
 import ItemForm from './ItemForm'
 import Totals from "./Totals"
 import styles from './IndividualItem.module.css'
+import ShareBill from "./ShareBill"
+
 
 const PersonalBill = (props) => {
     const person = props.person
@@ -10,7 +12,10 @@ const PersonalBill = (props) => {
     return (
         <div>
             <div className={styles.personalBillContainer}>
-                <h1>{person.name}</h1>
+                <div className={styles.nameAndShareDiv}>
+                    <h1>{person.name}</h1>
+                    <ShareBill person={person} />
+                </div>
                 <ItemForm addItemToPerson={props.addItemToPerson} personId={person.id} />
             </div>
             <div className={styles.billDetailsContainer}>
@@ -32,6 +37,7 @@ const PersonalBill = (props) => {
                 ))}
             </div>
             <Totals person={person} eliminateTax={props.eliminateTax} addTax={props.addTax} />
+
         </div>
     )
 
